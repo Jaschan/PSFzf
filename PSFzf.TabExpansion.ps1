@@ -276,12 +276,12 @@ function script:Invoke-FzfTabCompletionInner() {
         if ( $completionMatches[0].ResultType -eq 'ParameterName') {
             $Command = $Line.Substring(0, $Line.indexof(' '))
             $previewScript = $(Join-Path $PsScriptRoot 'helpers/PsFzfTabExpansion-Parameter.ps1')
-            $additionalCmd = @{ Preview = $("$PowerShellCMD -NoProfile -NonInteractive -File \""$previewScript\"" $Command {}") }
+            $additionalCmd = @{ Preview = $("$PowerShellCMD -NoProfile -NonInteractive -File `"$previewScript`" $Command {}") }
 
         }
         else {
             $previewScript = $(Join-Path $PsScriptRoot 'helpers/PsFzfTabExpansion-Preview.ps1')
-            $additionalCmd = @{ Preview = $($script:PowershellCmd + " -NoProfile -NonInteractive -File \""$previewScript\"" \""" + $path + "\"" {}") }
+            $additionalCmd = @{ Preview = $($script:PowershellCmd + " -NoProfile -NonInteractive -File `"$previewScript`" `"$path`" {}") }
         }
 
         $script:fzfOutput = @()

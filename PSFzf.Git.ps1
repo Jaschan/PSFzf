@@ -149,7 +149,7 @@ function Invoke-PsFzfGitFiles() {
         return
     }
 
-    $previewCmd = "${script:bashPath} \""" + $(Join-Path $PsScriptRoot 'helpers/PsFzfGitFiles-Preview.sh') + "\"" {-1}" + $(Get-ColorAlways) + " \""$($pwd.ProviderPath)\"""
+    $previewCmd = "${script:bashPath} `"$(Join-Path $PsScriptRoot 'helpers/PsFzfGitFiles-Preview.sh')`" {-1}$(Get-ColorAlways) `"$($pwd.ProviderPath)`""
     $result = @()
 
     $headerStrings = Get-HeaderStrings
@@ -185,7 +185,7 @@ function Invoke-PsFzfGitHashes() {
         return
     }
 
-    $previewCmd = "${script:bashPath} \""" + $(Join-Path $PsScriptRoot 'helpers/PsFzfGitHashes-Preview.sh') + "\"" {}" + $(Get-ColorAlways) + " \""$pwd\"""
+    $previewCmd = "${script:bashPath} `"$(Join-Path $PsScriptRoot 'helpers/PsFzfGitHashes-Preview.sh')`" {}$(Get-ColorAlways) `"$pwd`""
     $result = @()
 
     $fzfArguments = Get-GitFzfArguments
@@ -217,7 +217,7 @@ function Invoke-PsFzfGitBranches() {
     $ShortcutBranchesAll = "ctrl-a:change-prompt" + "($script:allBranchesString> )+reload(" + """${script:bashPath}"" '${gitBranchesHelperPath}' all-branches)"
     $fzfArguments['Bind'] += 'ctrl-/:change-preview-window(down,70%|hidden|)', $ShortcutBranchesAll
 
-    $previewCmd = "${script:bashPath} \""" + $(Join-Path $PsScriptRoot 'helpers/PsFzfGitBranches-Preview.sh') + "\"" {}"
+    $previewCmd = "${script:bashPath} `"$(Join-Path $PsScriptRoot 'helpers/PsFzfGitBranches-Preview.sh')`" {}"
     $result = @()
     # use pwsh to prevent bash from trying to write to host output:
     $branches = & $script:pwshExec -NoProfile -NonInteractive -Command "&  ${script:bashPath} '$gitBranchesHelperPath' branches"

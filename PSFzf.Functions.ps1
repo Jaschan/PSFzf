@@ -198,7 +198,7 @@ function GetProcessSelection() {
     )
 
     $previewScript = $(Join-Path $PsScriptRoot 'helpers/GetProcessesList.ps1')
-    $cmd = $($script:PowershellCmd + " -NoProfile -NonInteractive -File \""$previewScript\""")
+    $cmd = $($script:PowershellCmd + " -NoProfile -NonInteractive -File `"$previewScript`"")
 
     $header = "`n" + `
         "`nCTRL+R-Reload`tCTRL+A-Select All`tCTRL+D-Deselect All`tCTRL+T-Toggle All`n`n" + `
